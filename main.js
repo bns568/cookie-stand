@@ -7,20 +7,26 @@ let levainBakery = {
     minCustomersPerHour: 20,
     maxCustomersPerHour: 200,
     levainCustomers: [],
+    cookiesSoldToday: 0,
     averageCookiesPerCustomer: 2.5,
-    annualPriceIncrease: function (currentPrice) {
-        currentPrice = currentPrice * 1.0175;  
-        return currentPrice;
+    annualPriceIncrease: function () {
+        this.currentPrice = this.currentPrice * 1.0175;  
+        return this.currentPrice;
     },
     futurePrice: function (numOfYearsFromNow) {
-        return currentPrice * (1 + (.0175 * numOfYearsFromNow));
+        return this.currentPrice * (1 + (.0175 * numOfYearsFromNow));
     },
     customersPerHour: function () {
         return Math.floor(20 + (Math.Random * 180));
     },
     customerLog: function() {
         for (let i =0; i < 15; i++){
-            levainCustomers[i] = levainBakery.customersPerHour * levainBakery.customersPerHour;
+            this.levainCustomers[i] = this.customersPerHour * this.customersPerHour;
+        }
+    },
+    cookieDailySalesFunction: function() {
+        for (let i = 0; i < this.levainCustomers.length; i++) {
+            this.cookiesSoldToday = this.cookiesSoldToday + this.levainCustomers[i]; 
         }
     }
 }
@@ -34,20 +40,26 @@ let tiffsTreats = {
     minCustomersPerHour: 10,
     maxCustomersPerHour: 120,
     tiffsTreatsCustomers: [],
+    cookiesSoldToday: 0, 
     averageCookiesPerCustomer: 5,
-    annualPriceIncrease: function (currentPrice) {
-        currentPrice = currentPrice * 1.0175;  
-        return currentPrice;
+    annualPriceIncrease: function () {
+        this.currentPrice = this.currentPrice * 1.0175;  
+        return this.currentPrice;
     },
     futurePrice: function (numOfYearsFromNow) {
-        return currentPrice * (1 + (.0175 * numOfYearsFromNow));
+        return this.currentPrice * (1 + (.0175 * numOfYearsFromNow));
     },
     customersPerHour: function () {
         return Math.floor(10 + (Math.Random * 110));
     },
     customerLog: function() {
         for (let i =0; i < 15; i++){
-            tiffsTreatsCustomers[i] = tiffsTreats.customersPerHour * tiffsTreats.customersPerHour;
+            this.tiffsTreatsCustomers[i] = this.customersPerHour * this.customersPerHour;
+        }
+    },
+    cookieDailySalesFunction: function() {
+        for (let i = 0; i < this.tiffsTreatsCustomers.length; i++) {
+            this.cookiesSoldToday = this.cookiesSoldToday + this.tiffsTreatsCustomers[i]; 
         }
     }
 }
@@ -61,20 +73,26 @@ let milkBar = {
     minCustomersPerHour: 15,
     maxCustomersPerHour: 150,
     milkBarCustomers: [],
+    cookiesSoldToday: 0, 
     averageCookiesPerCustomer: 2,
-    annualPriceIncrease: function (currentPrice) {
-        currentPrice = currentPrice * 1.0175;  
-        return currentPrice;
+    annualPriceIncrease: function () {
+        this.currentPrice = this.currentPrice * 1.0175;  
+        return this.currentPrice;
     },
     futurePrice: function (numOfYearsFromNow) {
-        return currentPrice * (1 + (.0175 * numOfYearsFromNow));
+        return this.currentPrice * (1 + (.0175 * numOfYearsFromNow));
     },
     customersPerHour: function () {
         return Math.floor(15 + (Math.Random * 135));
     },
     customerLog: function() {
         for (let i =0; i < 15; i++){
-            milkBarCustomers[i] = milkBar.customersPerHour * milkBar.customersPerHour;
+            this.milkBarCustomers[i] = this.customersPerHour * this.customersPerHour;
+        }
+    },
+    cookieDailySalesFunction: function() {
+        for (let i = 0; i < this.milkBarCustomers.length; i++) {
+            this.cookiesSoldToday = this.cookiesSoldToday + this.milkBarCustomers[i]; 
         }
     }
 }
