@@ -146,9 +146,26 @@ document.getElementById('milkBar6pm').innerText = milkBar.milkBarCustomers[12];
 document.getElementById('milkBar7pm').innerText = milkBar.milkBarCustomers[13];
 document.getElementById('milkBar8pm').innerText = milkBar.milkBarCustomers[14];
 milkBar.cookieDailySalesFunction();
-console.log(milkBar.cookiesSoldToday);
+//console.log(milkBar.cookiesSoldToday);
 document.getElementById('milkBarTotal').innerText = milkBar.cookiesSoldToday;
 
 
 document.getElementById('tiffsTreatsName').innerText = tiffsTreats.name;
-tiffsTreats.cookieDailySalesFunction;
+tiffsTreats.customerLog();
+document.getElementById('tiffsTreats6am').innerText = tiffsTreats.tiffsTreatsCustomers[0];
+document.getElementById('tiffsTreats7am').innerText = tiffsTreats.tiffsTreatsCustomers[1];
+document.getElementById('tiffsTreats8am').innerText = tiffsTreats.tiffsTreatsCustomers[2];
+document.getElementById('tiffsTreats9am').innerText = tiffsTreats.tiffsTreatsCustomers[3];
+document.getElementById('tiffsTreats10am').innerText = tiffsTreats.tiffsTreatsCustomers[4];
+document.getElementById('tiffsTreats11am').innerText = tiffsTreats.tiffsTreatsCustomers[5];
+document.getElementById('tiffsTreats12pm').innerText = tiffsTreats.tiffsTreatsCustomers[6];
+document.getElementById('tiffsTreats1pm').innerText = tiffsTreats.tiffsTreatsCustomers[7];
+document.getElementById('tiffsTreats2pm').innerText = tiffsTreats.tiffsTreatsCustomers[8];
+document.getElementById('tiffsTreats3pm').innerText = tiffsTreats.tiffsTreatsCustomers[9];
+document.getElementById('tiffsTreats4pm').innerText = tiffsTreats.tiffsTreatsCustomers[10];
+document.getElementById('tiffsTreats5pm').innerText = tiffsTreats.tiffsTreatsCustomers[11];
+document.getElementById('tiffsTreats6pm').innerText = tiffsTreats.tiffsTreatsCustomers[12];
+document.getElementById('tiffsTreats7pm').innerText = tiffsTreats.tiffsTreatsCustomers[13];
+document.getElementById('tiffsTreats8pm').innerText = tiffsTreats.tiffsTreatsCustomers[14];
+tiffsTreats.cookieDailySalesFunction();
+document.getElementById('tiffsTreatsTotal').innerText = tiffsTreats.cookiesSoldToday;
