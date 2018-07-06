@@ -29,7 +29,7 @@ let levainBakery = {
             this.cookiesSoldToday = this.cookiesSoldToday + this.levainCustomers[i]; 
         }
     }
-}
+};
 
 let tiffsTreats = {
     name: "Tiff's Treats",
@@ -62,7 +62,7 @@ let tiffsTreats = {
             this.cookiesSoldToday = this.cookiesSoldToday + this.tiffsTreatsCustomers[i]; 
         }
     }
-}
+};
 
 let milkBar = {
     name: "Milk Bar",
@@ -95,4 +95,8 @@ let milkBar = {
             this.cookiesSoldToday = this.cookiesSoldToday + this.milkBarCustomers[i]; 
         }
     }
-}
+};
+
+document.getElementById('levainBakeryName').innerText = levainBakery.name;
+document.getElementById('milkBarName').innerText = milkBar.name;
+document.getElementById('tiffsTreatsName').innerText = tiffsTreats.name;
