@@ -30,9 +30,9 @@ let levainBakery = {
     },
     cookieDailySalesFunction: function() {
         for (let i = 0; i < this.levainCustomers.length; i++) {
-            console.log('customers:' + this.levainCustomers[i]);
+            //console.log('customers:' + this.levainCustomers[i]);
             this.cookiesSoldToday += this.levainCustomers[i]; 
-            console.log('cookies sold today: ' + this.cookiesSoldToday);
+            //console.log('cookies sold today: ' + this.cookiesSoldToday);
         }
     }
 };
@@ -56,16 +56,16 @@ let tiffsTreats = {
         return this.currentPrice * (1 + (.0175 * numOfYearsFromNow));
     },
     customersPerHour: function () {
-        return Math.floor(10 + (Math.Random * 110));
+        return Math.floor(10 + (Math.random() * 110));
     },
     customerLog: function() {
         for (let i =0; i < 15; i++){
-            this.tiffsTreatsCustomers[i] = this.customersPerHour * this.averageCookiesPerCustomer;
+            this.tiffsTreatsCustomers[i] = this.customersPerHour() * this.averageCookiesPerCustomer;
         }
     },
     cookieDailySalesFunction: function() {
         for (let i = 0; i < this.tiffsTreatsCustomers.length; i++) {
-            this.cookiesSoldToday = this.cookiesSoldToday + this.tiffsTreatsCustomers[i]; 
+            this.cookiesSoldToday += this.tiffsTreatsCustomers[i]; 
         }
     }
 };
@@ -89,25 +89,25 @@ let milkBar = {
         return this.currentPrice * (1 + (.0175 * numOfYearsFromNow));
     },
     customersPerHour: function () {
-        return Math.floor(15 + (Math.Random * 135));
+        return Math.floor(15 + (Math.random() * 135));
     },
     customerLog: function() {
         for (let i =0; i < 15; i++){
-            this.milkBarCustomers[i] = this.customersPerHour * this.averageCookiesPerCustomer;
+            this.milkBarCustomers[i] = this.customersPerHour() * this.averageCookiesPerCustomer;
         }
     },
     cookieDailySalesFunction: function() {
         for (let i = 0; i < this.milkBarCustomers.length; i++) {
-            this.cookiesSoldToday = this.cookiesSoldToday + this.milkBarCustomers[i]; 
+            this.cookiesSoldToday += this.milkBarCustomers[i]; 
         }
     }
 };
 
 document.getElementById('levainBakeryName').innerText = levainBakery.name;
 levainBakery.customerLog();
-console.log('Customer Log: ' + levainBakery.levainCustomers);
-console.log('Customers per hour: ' + levainBakery.customersPerHour());
-console.log('Average cookies per customer: ' + levainBakery.averageCookiesPerCustomer);
+//console.log('Customer Log: ' + levainBakery.levainCustomers);
+//console.log('Customers per hour: ' + levainBakery.customersPerHour());
+//console.log('Average cookies per customer: ' + levainBakery.averageCookiesPerCustomer);
 document.getElementById('levain6am').innerText = levainBakery.levainCustomers[0];
 document.getElementById('levain7am').innerText = levainBakery.levainCustomers[1];
 document.getElementById('levain8am').innerText = levainBakery.levainCustomers[2];
@@ -124,12 +124,31 @@ document.getElementById('levain6pm').innerText = levainBakery.levainCustomers[12
 document.getElementById('levain7pm').innerText = levainBakery.levainCustomers[13];
 document.getElementById('levain8pm').innerText = levainBakery.levainCustomers[14];
 levainBakery.cookieDailySalesFunction();
-console.log(levainBakery.cookiesSoldToday);
+//console.log(levainBakery.cookiesSoldToday);
 document.getElementById('levainBakeryTotal').innerText = levainBakery.cookiesSoldToday;
 
 
 document.getElementById('milkBarName').innerText = milkBar.name;
-milkBar.cookieDailySalesFunction;
+milkBar.customerLog();
+document.getElementById('milkBar6am').innerText = milkBar.milkBarCustomers[0];
+document.getElementById('milkBar7am').innerText = milkBar.milkBarCustomers[1];
+document.getElementById('milkBar8am').innerText = milkBar.milkBarCustomers[2];
+document.getElementById('milkBar9am').innerText = milkBar.milkBarCustomers[3];
+document.getElementById('milkBar10am').innerText = milkBar.milkBarCustomers[4];
+document.getElementById('milkBar11am').innerText = milkBar.milkBarCustomers[5];
+document.getElementById('milkBar12pm').innerText = milkBar.milkBarCustomers[6];
+document.getElementById('milkBar1pm').innerText = milkBar.milkBarCustomers[7];
+document.getElementById('milkBar2pm').innerText = milkBar.milkBarCustomers[8];
+document.getElementById('milkBar3pm').innerText = milkBar.milkBarCustomers[9];
+document.getElementById('milkBar4pm').innerText = milkBar.milkBarCustomers[10];
+document.getElementById('milkBar5pm').innerText = milkBar.milkBarCustomers[11];
+document.getElementById('milkBar6pm').innerText = milkBar.milkBarCustomers[12];
+document.getElementById('milkBar7pm').innerText = milkBar.milkBarCustomers[13];
+document.getElementById('milkBar8pm').innerText = milkBar.milkBarCustomers[14];
+milkBar.cookieDailySalesFunction();
+console.log(milkBar.cookiesSoldToday);
+document.getElementById('milkBarTotal').innerText = milkBar.cookiesSoldToday;
+
 
 document.getElementById('tiffsTreatsName').innerText = tiffsTreats.name;
 tiffsTreats.cookieDailySalesFunction;
