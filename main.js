@@ -1,3 +1,4 @@
+//create cookie store object constructor
 let CookieStore = function(name, location, minCustomersPerHour, maxCustomersPerHour, customers, cookiesSoldToday, avgCookiesPerCustomer){
     this.name = name;
     this.location = location;
@@ -8,202 +9,108 @@ let CookieStore = function(name, location, minCustomersPerHour, maxCustomersPerH
     this.avgCookiesPerCustomer = avgCookiesPerCustomer;
 };
 
+//method for object constructor that randomly calculates how many customers there were per hour
 CookieStore.prototype.customersPerHour = function () {
-    let answer = Math.floor(20 + (Math.random() * 180));
+    let answer = Math.floor(this.minCustomersPerHour + (Math.random() * (this.maxCustomersPerHour - this.minCustomersPerHour)));
         return answer;
 }
 
+//stores the number of customers per hour in an array
 CookieStore.prototype.customerLog = function () {
     for (let i =0; i < 15; i++){
         this.customers[i] = this.customersPerHour() * this.avgCookiesPerCustomer;
     }
 }
 
+//calculates the total number of customers that day
 CookieStore.prototype.cookieDailySalesFunction = function() {
     for (let i = 0; i < this.customers.length; i++) {
         this.cookiesSoldToday += this.customers[i]; 
     }
 }
 
+//creates instances for each of the three cookie stores
 let levainBakery = new CookieStore("Levain Bakery", "New York, NY", 20, 200, [], 0, 3);
 let milkBar = new CookieStore("Milk Bar", "New York, NY", 15, 150, [], 0, 2);
 let tiffsTreats = new CookieStore("Tiff's Treats", "Austin, TX", 10, 120, [], 0, 5);
 
+//put all three stores in an array so we can loop through and make a table
 let storeArray = [levainBakery, milkBar, tiffsTreats];
+let hoursArray = ["6:00 AM", "7:00 AM", "8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM", "7:00 PM", "8:00 PM"];
 
-for (let i = 0; i < storeArray.length; i++) {
+let tableLocation = document.getElementById('tableLocation');
 
+//create table
+let elTable = document.createElement('table');
+
+//give the table element we just created an id
+elTable.setAttribute('id', 'id-table');
+
+//append table to the body
+tableLocation.appendChild(elTable);
+
+//creates a header for table
+let createHeader = function () {
+    //create row for header
+    let elRow = document.createElement('tr');
+    //append row to the already existing table
+    elTable.appendChild(elRow);
+    let elTh = document.createElement('th');
+    elRow.appendChild(elTh);
+    let elTd = document.createElement('td');
+    elTd.innerText = " ";
+    elTh.appendChild(elTd);
+
+    for (let i = 0; i < hoursArray.length; i++) {
+        let elTh = document.createElement('th');
+        elRow.appendChild(elTh);
+        let elTd = document.createElement('td');
+        elTd.innerText = hoursArray[i];
+        elTh.appendChild(elTd);
+    };
 };
 
+//creates a footer for table
+let createFooter = function () {
 
-// let levainBakery = {
-//     name: "Levain Bakery",
-    // location: "New York, NY",
-    // cookieType: "chocolate chip walnut",
-    // currentPrice: 4,
-    // rating: "5/5",
-    // minCustomersPerHour: 20,
-    // maxCustomersPerHour: 200,
-    // levainCustomers: [],
-    // cookiesSoldToday: 0,
-    // averageCookiesPerCustomer: 3,
-    // annualPriceIncrease: function () {
-    //     this.currentPrice = this.currentPrice * 1.0175;  
-    //     return this.currentPrice;
-    // },
-    // futurePrice: function (numOfYearsFromNow) {
-    //     return this.currentPrice * (1 + (.0175 * numOfYearsFromNow));
-    // },
-    // customersPerHour: function () {
-    //     let answer = Math.floor(20 + (Math.random() * 180));
-    //     //console.log ('Math random: ' + answer);
-    //     return answer; 
-    // },
-    // customerLog: function() {
-    //     for (let i =0; i < 15; i++){
-    //         //console.log(this.customersPerHour() + ' ' + this.averageCookiesPerCustomer);
-    //         this.levainCustomers[i] = this.customersPerHour() * this.averageCookiesPerCustomer;
-    //         //console.log( this.levainCustomers[i]);
-    //     }
-    // },
-//     cookieDailySalesFunction: function() {
-//         for (let i = 0; i < this.levainCustomers.length; i++) {
-//             //console.log('customers:' + this.levainCustomers[i]);
-//             this.cookiesSoldToday += this.levainCustomers[i]; 
-//             //console.log('cookies sold today: ' + this.cookiesSoldToday);
-//         }
-//     }
-// };
+}
 
-// let tiffsTreats = {
-//     name: "Tiff's Treats",
-//     location: "Austin, TX",
-//     cookieType: "chocolate chip",
-//     currentPrice: 2,
-//     rating: "3/5",
-//     minCustomersPerHour: 10,
-//     maxCustomersPerHour: 120,
-//     tiffsTreatsCustomers: [],
-//     cookiesSoldToday: 0, 
-//     averageCookiesPerCustomer: 5,
-//     annualPriceIncrease: function () {
-//         this.currentPrice = this.currentPrice * 1.0175;  
-//         return this.currentPrice;
-//     },
-//     futurePrice: function (numOfYearsFromNow) {
-//         return this.currentPrice * (1 + (.0175 * numOfYearsFromNow));
-//     },
-//     customersPerHour: function () {
-//         return Math.floor(10 + (Math.random() * 110));
-//     },
-//     customerLog: function() {
-//         for (let i =0; i < 15; i++){
-//             this.tiffsTreatsCustomers[i] = this.customersPerHour() * this.averageCookiesPerCustomer;
-//         }
-//     },
-//     cookieDailySalesFunction: function() {
-//         for (let i = 0; i < this.tiffsTreatsCustomers.length; i++) {
-//             this.cookiesSoldToday += this.tiffsTreatsCustomers[i]; 
-//         }
-//     }
-// };
+//creates a table of info provided
+CookieStore.prototype.render = function (store) {
+    let elRow = document.createElement('tr');
+    //append row to the already existing table
+    elTable.appendChild(elRow);
+    //move from cell to cell left to right, inputting text
+    let thName = document.createElement('th');
+    thName.innerText = store.name;
+    elRow.appendChild(thName);
+    //Input name and location
+    // let tdLocation = document.createElement('td');
+    // tdLocation.innerText = store.location;
+    // thName.appendChild(tdLocation);
 
-// let milkBar = {
-//     name: "Milk Bar",
-//     location: "New York, NY",
-//     cookieType: "compost cookie",
-//     currentPrice: 3.50,
-//     rating: "4/5",
-//     minCustomersPerHour: 15,
-//     maxCustomersPerHour: 150,
-//     milkBarCustomers: [],
-//     cookiesSoldToday: 0, 
-//     averageCookiesPerCustomer: 2,
-//     annualPriceIncrease: function () {
-//         this.currentPrice = this.currentPrice * 1.0175;  
-//         return this.currentPrice;
-//     },
-//     futurePrice: function (numOfYearsFromNow) {
-//         return this.currentPrice * (1 + (.0175 * numOfYearsFromNow));
-//     },
-//     customersPerHour: function () {
-//         return Math.floor(15 + (Math.random() * 135));
-//     },
-//     customerLog: function() {
-//         for (let i =0; i < 15; i++){
-//             this.milkBarCustomers[i] = this.customersPerHour() * this.averageCookiesPerCustomer;
-//         }
-//     },
-//     cookieDailySalesFunction: function() {
-//         for (let i = 0; i < this.milkBarCustomers.length; i++) {
-//             this.cookiesSoldToday += this.milkBarCustomers[i]; 
-//         }
-//     }
-// };
+    for(let i = 0; i < store.customers.length; i++) {
+         let tdCustPH = document.createElement('td');
+         tdCustPH.innerText = store.customers[i];
+         elRow.appendChild(tdCustPH);
+     }
+}
 
-// document.getElementById('levainBakeryName').innerText = levainBakery.name;
-// levainBakery.customerLog();
-// //console.log('Customer Log: ' + levainBakery.levainCustomers);
-// //console.log('Customers per hour: ' + levainBakery.customersPerHour());
-// //console.log('Average cookies per customer: ' + levainBakery.averageCookiesPerCustomer);
-// document.getElementById('levain6am').innerText = levainBakery.levainCustomers[0];
-// document.getElementById('levain7am').innerText = levainBakery.levainCustomers[1];
-// document.getElementById('levain8am').innerText = levainBakery.levainCustomers[2];
-// document.getElementById('levain9am').innerText = levainBakery.levainCustomers[3];
-// document.getElementById('levain10am').innerText = levainBakery.levainCustomers[4];
-// document.getElementById('levain11am').innerText = levainBakery.levainCustomers[5];
-// document.getElementById('levain12pm').innerText = levainBakery.levainCustomers[6];
-// document.getElementById('levain1pm').innerText = levainBakery.levainCustomers[7];
-// document.getElementById('levain2pm').innerText = levainBakery.levainCustomers[8];
-// document.getElementById('levain3pm').innerText = levainBakery.levainCustomers[9];
-// document.getElementById('levain4pm').innerText = levainBakery.levainCustomers[10];
-// document.getElementById('levain5pm').innerText = levainBakery.levainCustomers[11];
-// document.getElementById('levain6pm').innerText = levainBakery.levainCustomers[12];
-// document.getElementById('levain7pm').innerText = levainBakery.levainCustomers[13];
-// document.getElementById('levain8pm').innerText = levainBakery.levainCustomers[14];
-// levainBakery.cookieDailySalesFunction();
-// //console.log(levainBakery.cookiesSoldToday);
-// document.getElementById('levainBakeryTotal').innerText = levainBakery.cookiesSoldToday;
+//Run methods to display table; 1. create header
+createHeader();
 
+//Add row for Levain Bakery (first create customer array for instance)
+levainBakery.customerLog();
+levainBakery.render(levainBakery);
 
-document.getElementById('milkBarName').innerText = milkBar.name;
+//Add row for Milk Bar
 milkBar.customerLog();
-document.getElementById('milkBar6am').innerText = milkBar.milkBarCustomers[0];
-document.getElementById('milkBar7am').innerText = milkBar.milkBarCustomers[1];
-document.getElementById('milkBar8am').innerText = milkBar.milkBarCustomers[2];
-document.getElementById('milkBar9am').innerText = milkBar.milkBarCustomers[3];
-document.getElementById('milkBar10am').innerText = milkBar.milkBarCustomers[4];
-document.getElementById('milkBar11am').innerText = milkBar.milkBarCustomers[5];
-document.getElementById('milkBar12pm').innerText = milkBar.milkBarCustomers[6];
-document.getElementById('milkBar1pm').innerText = milkBar.milkBarCustomers[7];
-document.getElementById('milkBar2pm').innerText = milkBar.milkBarCustomers[8];
-document.getElementById('milkBar3pm').innerText = milkBar.milkBarCustomers[9];
-document.getElementById('milkBar4pm').innerText = milkBar.milkBarCustomers[10];
-document.getElementById('milkBar5pm').innerText = milkBar.milkBarCustomers[11];
-document.getElementById('milkBar6pm').innerText = milkBar.milkBarCustomers[12];
-document.getElementById('milkBar7pm').innerText = milkBar.milkBarCustomers[13];
-document.getElementById('milkBar8pm').innerText = milkBar.milkBarCustomers[14];
-milkBar.cookieDailySalesFunction();
-//console.log(milkBar.cookiesSoldToday);
-document.getElementById('milkBarTotal').innerText = milkBar.cookiesSoldToday;
+milkBar.render(milkBar);
 
-
-document.getElementById('tiffsTreatsName').innerText = tiffsTreats.name;
+//Add row for Tiffs Treats
 tiffsTreats.customerLog();
-document.getElementById('tiffsTreats6am').innerText = tiffsTreats.tiffsTreatsCustomers[0];
-document.getElementById('tiffsTreats7am').innerText = tiffsTreats.tiffsTreatsCustomers[1];
-document.getElementById('tiffsTreats8am').innerText = tiffsTreats.tiffsTreatsCustomers[2];
-document.getElementById('tiffsTreats9am').innerText = tiffsTreats.tiffsTreatsCustomers[3];
-document.getElementById('tiffsTreats10am').innerText = tiffsTreats.tiffsTreatsCustomers[4];
-document.getElementById('tiffsTreats11am').innerText = tiffsTreats.tiffsTreatsCustomers[5];
-document.getElementById('tiffsTreats12pm').innerText = tiffsTreats.tiffsTreatsCustomers[6];
-document.getElementById('tiffsTreats1pm').innerText = tiffsTreats.tiffsTreatsCustomers[7];
-document.getElementById('tiffsTreats2pm').innerText = tiffsTreats.tiffsTreatsCustomers[8];
-document.getElementById('tiffsTreats3pm').innerText = tiffsTreats.tiffsTreatsCustomers[9];
-document.getElementById('tiffsTreats4pm').innerText = tiffsTreats.tiffsTreatsCustomers[10];
-document.getElementById('tiffsTreats5pm').innerText = tiffsTreats.tiffsTreatsCustomers[11];
-document.getElementById('tiffsTreats6pm').innerText = tiffsTreats.tiffsTreatsCustomers[12];
-document.getElementById('tiffsTreats7pm').innerText = tiffsTreats.tiffsTreatsCustomers[13];
-document.getElementById('tiffsTreats8pm').innerText = tiffsTreats.tiffsTreatsCustomers[14];
-tiffsTreats.cookieDailySalesFunction();
-document.getElementById('tiffsTreatsTotal').innerText = tiffsTreats.cookiesSoldToday;
+tiffsTreats.render(tiffsTreats);
+
+//Create footer to include the total sales
+
+
