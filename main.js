@@ -1,31 +1,31 @@
 //create cookie store object constructor
-let CookieStore = function(name, location, minCustomersPerHour, maxCustomersPerHour, customers, cookiesSoldToday, avgCookiesPerCustomer){
+let CookieStore = function(name, location, minCustomersPerHour, maxCustomersPerHour, cookieSalesArray, cookiesSoldToday, avgCookiesPerCustomer){
     this.name = name;
     this.location = location;
     this.minCustomersPerHour = minCustomersPerHour;
     this.maxCustomersPerHour = maxCustomersPerHour;
-    this.customers = customers;
+    this.cookieSalesArray = cookieSalesArray;
     this.cookiesSoldToday = cookiesSoldToday;
     this.avgCookiesPerCustomer = avgCookiesPerCustomer;
 };
 
 //method for object constructor that randomly calculates how many customers there were per hour
-CookieStore.prototype.customersPerHour = function () {
+CookieStore.prototype.customersDuringHour = function () {
     let answer = Math.floor(this.minCustomersPerHour + (Math.random() * (this.maxCustomersPerHour - this.minCustomersPerHour)));
         return answer;
 }
 
-//stores the number of customers per hour in an array
-CookieStore.prototype.customerLog = function () {
+//stores the number of cookies sold per hour in an array
+CookieStore.prototype.logCookieSalesPerHourFunc = function () {
     for (let i =0; i < 15; i++){
-        this.customers[i] = this.customersPerHour() * this.avgCookiesPerCustomer;
+        this.cookieSalesArray[i] = this.customersDuringHour() * this.avgCookiesPerCustomer;
     }
 }
 
 //calculates the total number of customers that day
 CookieStore.prototype.cookieDailySalesFunction = function() {
-    for (let i = 0; i < this.customers.length; i++) {
-        this.cookiesSoldToday += this.customers[i]; 
+    for (let i = 0; i < this.cookieSalesArray.length; i++) {
+        this.cookiesSoldToday += this.cookieSalesArray[i]; 
     }
 }
 
@@ -72,7 +72,28 @@ let createHeader = function () {
 
 //creates a footer for table
 let createFooter = function () {
+    let elRow = document.createElement('tr');
+    //append row to the already existing table
+    elTable.appendChild(elRow);
+    //move from cell to cell left to right, inputting text
+    let thName = document.createElement('th');
+    thName.innerText = "Total";
+    elRow.appendChild(thName);
 
+    for (let i = 0; i < hoursArray.length; i++) {
+        //create row for totals
+        let elTd = document.createElement('td');
+
+        let total = 0;
+
+        //add numbers from each store at specific hour
+        for (let j = 0; j < storeArray.length; j++) {
+           total += storeArray[j].cookieSalesArray[i];
+        };
+
+        elTd.innerText = total;
+        elRow.appendChild(elTd);
+    };
 }
 
 //creates a table of info provided
@@ -89,9 +110,9 @@ CookieStore.prototype.render = function (store) {
     // tdLocation.innerText = store.location;
     // thName.appendChild(tdLocation);
 
-    for(let i = 0; i < store.customers.length; i++) {
+    for(let i = 0; i < store.cookieSalesArray.length; i++) {
          let tdCustPH = document.createElement('td');
-         tdCustPH.innerText = store.customers[i];
+         tdCustPH.innerText = store.cookieSalesArray[i];
          elRow.appendChild(tdCustPH);
      }
 }
@@ -100,17 +121,17 @@ CookieStore.prototype.render = function (store) {
 createHeader();
 
 //Add row for Levain Bakery (first create customer array for instance)
-levainBakery.customerLog();
+levainBakery.logCookieSalesPerHourFunc();
 levainBakery.render(levainBakery);
 
 //Add row for Milk Bar
-milkBar.customerLog();
+milkBar.logCookieSalesPerHourFunc();
 milkBar.render(milkBar);
 
 //Add row for Tiffs Treats
-tiffsTreats.customerLog();
+tiffsTreats.logCookieSalesPerHourFunc();
 tiffsTreats.render(tiffsTreats);
 
 //Create footer to include the total sales
-
+createFooter();
 
