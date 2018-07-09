@@ -75,6 +75,8 @@ let createFooter = function () {
     let elRow = document.createElement('tr');
     //append row to the already existing table
     elTable.appendChild(elRow);
+    //give total row an id so I can removeChild as necessary
+    elRow.setAttribute('id', 'total-row');
     //move from cell to cell left to right, inputting text
     let thName = document.createElement('th');
     thName.innerText = "Total";
@@ -150,11 +152,14 @@ console.log(newAvgCookiesPerCustomer);
 
 form.addEventListener('submit', function(event) {
     event.preventDefault();
-    let newStore = new CookieStore(newName, newLocation, newMinCustomersPerHour, newMaxCustomersPerHour, [], 0, newAvgCookiesPerCustomer);
+    let newStore = new CookieStore(form.storeName.value, form.location.value, form.minCustomersPerHour.value, form.maxCustomersPerHour.value, [], 0, form.avgCookiesPerCustomer.value);
     storeArray.push(newStore);
-    console.log(storeArray);
+    let totalRow = document.getElementById("total-row");
+    console.log(totalRow);
+    elTable.removeChild(totalRow);
     newStore.logCookieSalesPerHourFunc();
     newStore.render(newStore);
+    createFooter();
 })
 
 //Create footer to include the total sales
