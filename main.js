@@ -132,6 +132,30 @@ milkBar.render(milkBar);
 tiffsTreats.logCookieSalesPerHourFunc();
 tiffsTreats.render(tiffsTreats);
 
+let form = document.getElementById("newLocation");
+console.log(form);
+
+//START HERE: THESE VARIABLES ARE NOT WORKING AND THEREFORE ARE NOT PASSING INTO THE STORE ARRAY
+let newName = form.storeName.value;
+console.log(newName);
+let newLocation = form.location.value;
+console.log(newLocation);
+let newMinCustomersPerHour = form.minCustomersPerHour.value; 
+console.log(newMinCustomersPerHour);
+let newMaxCustomersPerHour = form.maxCustomersPerHour.value; 
+console.log(newMaxCustomersPerHour);
+let newAvgCookiesPerCustomer = form.avgCookiesPerCustomer.value;
+console.log(newAvgCookiesPerCustomer);
+
+
+form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    let newStore = new CookieStore(newName, newLocation, newMinCustomersPerHour, newMaxCustomersPerHour, [], 0, newAvgCookiesPerCustomer);
+    storeArray.push(newStore);
+    console.log(storeArray);
+    newStore.logCookieSalesPerHourFunc();
+    newStore.render(newStore);
+})
+
 //Create footer to include the total sales
 createFooter();
-
