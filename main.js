@@ -55,12 +55,15 @@ let createHeader = function () {
     let elRow = document.createElement('tr');
     //append row to the already existing table
     elTable.appendChild(elRow);
+    //create and append table header onto row (onto table)
     let elTh = document.createElement('th');
     elRow.appendChild(elTh);
+    //create blank data cell and rename, then append onto table header
     let elTd = document.createElement('td');
     elTd.innerText = " ";
     elTh.appendChild(elTd);
 
+    //create data cell for each hour the stores are open
     for (let i = 0; i < hoursArray.length; i++) {
         let elTh = document.createElement('th');
         elRow.appendChild(elTh);
@@ -82,6 +85,7 @@ let createFooter = function () {
     thName.innerText = "Total";
     elRow.appendChild(thName);
 
+    //move across the table for each hour the stores are open, and for each column move down row by row to add the total number of cookies sold at each location per day
     for (let i = 0; i < hoursArray.length; i++) {
         //create row for totals
         let elTd = document.createElement('td');
@@ -103,15 +107,12 @@ CookieStore.prototype.render = function (store) {
     let elRow = document.createElement('tr');
     //append row to the already existing table
     elTable.appendChild(elRow);
-    //move from cell to cell left to right, inputting text
+    //create a table-header data cell with store name
     let thName = document.createElement('th');
     thName.innerText = store.name;
     elRow.appendChild(thName);
-    //Input name and location
-    // let tdLocation = document.createElement('td');
-    // tdLocation.innerText = store.location;
-    // thName.appendChild(tdLocation);
 
+    //move from cell to cell left to right, inputting text inside array of cookie sales per hour
     for(let i = 0; i < store.cookieSalesArray.length; i++) {
          let tdCustPH = document.createElement('td');
          tdCustPH.innerText = store.cookieSalesArray[i];
@@ -134,33 +135,34 @@ milkBar.render(milkBar);
 tiffsTreats.logCookieSalesPerHourFunc();
 tiffsTreats.render(tiffsTreats);
 
+//get user input from form
 let form = document.getElementById("newLocation");
-console.log(form);
 
-//START HERE: THESE VARIABLES ARE NOT WORKING AND THEREFORE ARE NOT PASSING INTO THE STORE ARRAY
 let newName = form.storeName.value;
-console.log(newName);
 let newLocation = form.location.value;
-console.log(newLocation);
 let newMinCustomersPerHour = form.minCustomersPerHour.value; 
-console.log(newMinCustomersPerHour);
 let newMaxCustomersPerHour = form.maxCustomersPerHour.value; 
-console.log(newMaxCustomersPerHour);
 let newAvgCookiesPerCustomer = form.avgCookiesPerCustomer.value;
-console.log(newAvgCookiesPerCustomer);
 
-
+//if submit is clicked (with all required field), this adds a cookie store to the array of already existing locations, removes the current total row (by removing child), appends the new cookie store, and re-calls the footer function
 form.addEventListener('submit', function(event) {
+    //prevents rereshing
     event.preventDefault();
+    //create new instance of cookie store
     let newStore = new CookieStore(form.storeName.value, form.location.value, form.minCustomersPerHour.value, form.maxCustomersPerHour.value, [], 0, form.avgCookiesPerCustomer.value);
+    //push onto array of already existing locations
     storeArray.push(newStore);
+    //create variable to remove the total row from existing table
     let totalRow = document.getElementById("total-row");
-    console.log(totalRow);
+    //remove total row
     elTable.removeChild(totalRow);
+    //find cookie sales per hour for new store
     newStore.logCookieSalesPerHourFunc();
+    //add new store to existing table 
     newStore.render(newStore);
+    //re-call the footer function
     createFooter();
 })
 
-//Create footer to include the total sales
+//Create footer to include the total sales (in case user input hasn't been submitted)
 createFooter();
