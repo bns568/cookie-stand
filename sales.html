@@ -8,66 +8,19 @@
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
 </head>
 <body>
-        <h1>Cookie Stand</h1>
-        <h2 id = 'levainBakeryName'>Name</h2>
-        <ui>
-            <li>6:00 AM: <span id = 'levain6am'>6am</span></li>
-            <li>7:00 AM: <span id = 'levain7am'>7am</span></li>
-            <li>8:00 AM: <span id = 'levain8am'>8am</span></li>
-            <li>9:00 AM: <span id = 'levain9am'>9am</span></li>
-            <li>10:00 AM: <span id = 'levain10am'>10am</span></li>
-            <li>11:00 AM: <span id = 'levain11am'>11am</span></li>
-            <li>12:00 PM: <span id = 'levain12pm'>12pm</span></li>
-            <li>1:00 PM: <span id = 'levain1pm'>1pm</span></li>
-            <li>2:00 PM: <span id = 'levain2pm'>2pm</span></li>
-            <li>3:00 PM: <span id = 'levain3pm'>3pm</span></li>
-            <li>4:00 PM: <span id = 'levain4pm'>4pm</span></li>
-            <li>5:00 PM: <span id = 'levain5pm'>5pm</span></li>
-            <li>6:00 PM: <span id = 'levain6pm'>6pm</span></li>
-            <li>7:00 PM: <span id = 'levain7pm'>7pm</span></li>
-            <li>8:00 PM: <span id = 'levain8pm'>8pm</span></li>
-            <li>Total: <span id = 'levainBakeryTotal'>Total</span></li>
-        </ui>
+        <h1>Cookie Stand: Cookies Sold Per Location</h1>
 
-        <h2 id = 'milkBarName'>Name</h2>
-        <ui>
-                <li>6:00 AM: <span id = 'milkBar6am'>6am</span></li>
-                <li>7:00 AM: <span id = 'milkBar7am'>7am</span></li>
-                <li>8:00 AM: <span id = 'milkBar8am'>8am</span></li>
-                <li>9:00 AM: <span id = 'milkBar9am'>9am</span></li>
-                <li>10:00 AM: <span id = 'milkBar10am'>10am</span></li>
-                <li>11:00 AM: <span id = 'milkBar11am'>11am</span></li>
-                <li>12:00 PM: <span id = 'milkBar12pm'>12pm</span></li>
-                <li>1:00 PM: <span id = 'milkBar1pm'>1pm</span></li>
-                <li>2:00 PM: <span id = 'milkBar2pm'>2pm</span></li>
-                <li>3:00 PM: <span id = 'milkBar3pm'>3pm</span></li>
-                <li>4:00 PM: <span id = 'milkBar4pm'>4pm</span></li>
-                <li>5:00 PM: <span id = 'milkBar5pm'>5pm</span></li>
-                <li>6:00 PM: <span id = 'milkBar6pm'>6pm</span></li>
-                <li>7:00 PM: <span id = 'milkBar7pm'>7pm</span></li>
-                <li>8:00 PM: <span id = 'milkBar8pm'>8pm</span></li>
-                <li>Total: <span id = 'milkBarTotal'>Total</span></li>
-        </ui>
+        <form id= 'newLocation'>
+            <input required name='storeName' type='text'>Store Name</input><br>
+            <input required name='location' type='text'>Store Location</input><br>
+            <input required name='minCustomersPerHour' type='number'>Minimum Customers Per Hour</input><br>
+            <input required name='maxCustomersPerHour' type='number'>Maximum Customers Per Hour</input><br>
+            <input required name='avgCookiesPerCustomer' type='number'>Average Cookies Sold Per Customer</input><br><br>
+            <button type='submit'>Submit</button> 
+        </form>
+        <br><br>
+        <span id = 'tableLocation'></span>
 
-        <h2 id = 'tiffsTreatsName'>Name</h2> 
-        <ui>
-                <li>6:00 AM: <span id = 'tiffsTreats6am'>6am</span></li>
-                <li>7:00 AM: <span id = 'tiffsTreats7am'>7am</span></li>
-                <li>8:00 AM: <span id = 'tiffsTreats8am'>8am</span></li>
-                <li>9:00 AM: <span id = 'tiffsTreats9am'>9am</span></li>
-                <li>10:00 AM: <span id = 'tiffsTreats10am'>10am</span></li>
-                <li>11:00 AM: <span id = 'tiffsTreats11am'>11am</span></li>
-                <li>12:00 PM: <span id = 'tiffsTreats12pm'>12pm</span></li>
-                <li>1:00 PM: <span id = 'tiffsTreats1pm'>1pm</span></li>
-                <li>2:00 PM: <span id = 'tiffsTreats2pm'>2pm</span></li>
-                <li>3:00 PM: <span id = 'tiffsTreats3pm'>3pm</span></li>
-                <li>4:00 PM: <span id = 'tiffsTreats4pm'>4pm</span></li>
-                <li>5:00 PM: <span id = 'tiffsTreats5pm'>5pm</span></li>
-                <li>6:00 PM: <span id = 'tiffsTreats6pm'>6pm</span></li>
-                <li>7:00 PM: <span id = 'tiffsTreats7pm'>7pm</span></li>
-                <li>8:00 PM: <span id = 'tiffsTreats8pm'>8pm</span></li>
-                <li>Total: <span id = 'tiffsTreatsTotal'>Total</span></li>
-        </ui>
 </body>
 <script src="main.js"></script>
 </html>
