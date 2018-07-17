@@ -26,6 +26,7 @@ CookieStore.prototype.logCookieSalesPerHourFunc = function () {
 CookieStore.prototype.cookieDailySalesFunction = function() {
     for (let i = 0; i < this.cookieSalesArray.length; i++) {
         this.cookiesSoldToday += this.cookieSalesArray[i]; 
+        //this.cookiesSoldToday = this.cookiesSoldToday + this.cookieSalesArray[i]; 
     }
 }
 
@@ -45,6 +46,7 @@ let elTable = document.createElement('table');
 
 //give the table element we just created an id
 elTable.setAttribute('id', 'id-table');
+elTable.setAttribute('align', 'center');
 
 //append table to the body
 tableLocation.appendChild(elTable);
